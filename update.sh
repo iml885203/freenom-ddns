@@ -14,6 +14,7 @@ LOGOUT_URL="$BASE_URL/logout.php"
 MANAGED_URL="$CAREA_URL?managedns=$freenom_domain_name&domainid=$freenom_domain_id"
 GET_IP_URL="https://api.ipify.org/"
 LOGGER_SCRIPT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/log.sh
+SYNOLOGY_EVENT_SCRIPT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/synology_event.sh
 
 # get current ip address
 current_ip="$(curl -s "$GET_IP_URL")"
