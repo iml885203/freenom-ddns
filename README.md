@@ -1,0 +1,1 @@
+# Freenom-DDNS
