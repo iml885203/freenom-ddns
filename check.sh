@@ -2,6 +2,7 @@
 GET_IP_URL="https://api.ipify.org/"
 UPDATE_SCRIPT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/update.sh
 LOGGER_SCRIPT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/log.sh
+SYNOLOGY_EVENT_SCRIPT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/synology_event.sh
 source $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/config
 
 DNS_IP="$(nslookup $freenom_domain_name 80.80.80.80 | tail -2 | head -1 | awk '{print $2}')"

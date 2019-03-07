@@ -1,0 +1,7 @@
+#!/bin/bash
+freenom_email="your_email"
+freenom_passwd="your_password"
+freenom_domain_name="your_domain_name"
+freenom_domain_id="your_domain_id_from_url"
+# yes or no
+synology_notify="no"

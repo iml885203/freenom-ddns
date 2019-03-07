@@ -9,15 +9,12 @@ case $1 in
 rm $FULL_PATH
 ;;
 "start")
-echo "Started domain address check at:   $(date)" >> $FULL_PATH
+echo "------- Started domain address check at: $(date) -------" >> $FULL_PATH
 ;;
 continue)
 echo $2 >> $FULL_PATH
 ;;
 "end")
-echo "" >> $FULL_PATH
-echo "" >> $FULL_PATH
-echo "" >> $FULL_PATH
 echo "" >> $FULL_PATH
 ;;
 *)
