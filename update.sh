@@ -20,7 +20,7 @@ current_ip="$(curl -s "$GET_IP_URL")"
 
 if [ -z "$current_ip" ]; then
     $LOGGER_SCRIPT continue "Could not get current IP address."
-    SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Could not get current IP address.'}"
+    $SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Could not get current IP address.'}"
     exit 1
 fi
 
@@ -40,13 +40,13 @@ loginResultUrl=$(curl --compressed -kLs -o /dev/null -c "$cookie_file" \
 
 if [ ! -s "$cookie_file" ]; then
     $LOGGER_SCRIPT continue "Login failed: empty cookie."
-    SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Login failed: empty cookie.'}"
+    $SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Login failed: empty cookie.'}"
     exit 1
 fi
 
 if echo "$loginResultUrl" | grep "/clientarea.php?incorrect=true"; then
     $LOGGER_SCRIPT continue "Login failed."
-    SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Login failed.'}"
+    $SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Login failed.'}"
     exit 1
 fi
 
@@ -63,7 +63,7 @@ updateResult=$(curl --compressed -k -L -b "$cookie_file" \
 
 if ! echo "$updateResult" | grep -q "name=\"records\[0\]\[value\]\" value=\"$current_ip\""; then
     $LOGGER_SCRIPT continue "Update failed." 1>&2
-    SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Update failed.'}"
+    $SYNOLOGY_EVENT_SCRIPT "{'%DDNS_HOST_NAME%':'$freenom_domain_name','%EXTERNAL_IP%':'$current_ip','%DDNS_NAME%':'freenom','%FAIL_REASON%':'Update failed.'}"
     exit 1
 fi
 
