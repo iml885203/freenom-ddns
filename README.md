@@ -14,5 +14,5 @@ vim config
 ## Cronjob
 ```
 # run at every hour
-0 * * * * . /path/check.sh
+0 * * * * /bin/bash -c "/path/check.sh"
 ```
